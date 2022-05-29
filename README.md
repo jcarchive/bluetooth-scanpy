@@ -1,10 +1,11 @@
 # BluetoothScanpy
 Example for bluetooth scanning with python for BLE and Standard bluetooth devices in Linux
 
-The steps required for running the project are below if you are running it from the ***docker*** file or in your machine 
-***directly*** only follow the marked steps required for your case.
+The steps required for running the project are below if you are running it from the ***docker*** file, in your machine 
+***directly*** or in a python ***virtualenv*** only follow the marked steps required for your case.
+
 ## Setup
-### Install dbus and bluetooth packages - [docker, directly]
+### Install dbus and bluetooth packages - [docker, directly, virtualenv]
 Before run the project you should have `dbus` and `bluetooth` installed in your host machine. In most distros they should
 be installed by default so this should be not needed for you.
 
@@ -34,7 +35,7 @@ arch base
 
 **For other distros you should verify your distro package manager  for the appropriate packages
 
-### Verify that you are using python3 [directly]
+### Verify that you are using python3 [directly, virtualenv]
 
 Verify that you have python3 installed
 
@@ -45,7 +46,7 @@ For debian base distros
 
 For arch base distros it should have come by default installed
 
-### Install PyGObject dependencty [directly]
+### Install PyGObject dependencty [directly, virtualenv]
 The easy way to get this dependency is to use the one from your distro repos
 
 For debian base distros
@@ -60,7 +61,24 @@ For arch base distros
 
 For more distro instructions fot this step you could refer to [PyGObject](https//pygobject.readthedocs.io/en/latest/getting_started.html)
 
-## How to run [directly]
+## Prepare python virtual environment [virtualenv]
+First lets create the venv directory with the flag to use also your system pacakges
+```
+python3 -m venv .venv --system-packages
+```
+The package `--system-packages` flag is required so your virtual env can access to the PyGObject installed from your
+distro repos. ***If*** you refered to the external instructions [PyGObject](https//pygobject.readthedocs.io/en/latest/getting_started.html), and installed it from source without using your distro package manager
+you can omit the flag and add `PyGObject` to the requirements.txt file.
+
+Then you need to activate the venv
+```
+source .venv/bin/activate
+```
+
+Now you can follow the steps from 'How to run [directly, virtualenv]'
+
+
+## How to run [directly, virtualenv]
 
 Be sure that your bluetooth and dbus service are running 
 
@@ -133,6 +151,3 @@ Event [change], MAC: FF:FF:FF:FF:FF:FF, RSSI: -66, data: {"RSSI": -66}
 Event [change], MAC: FF:FF:FF:FF:FF:FF, RSSI: -76, data: {"RSSI": -76}
 ...
 ```
-
-
-
